@@ -1,5 +1,6 @@
 package com.api.backend.controller;
 
+import com.api.backend.dto.CrearRolDTO;
 import com.api.backend.dto.LoginDTO;
 import com.api.backend.dto.RegistroUsuarioDTO;
 import com.api.backend.model.Rol;
@@ -72,4 +73,13 @@ public class AuthController {
         usuarioRepo.save(usuario);
         return new ResponseEntity<>("Usuario registrado", HttpStatus.OK);
     }
+    
+    @PostMapping("/crearRol")
+    public ResponseEntity<?> crearRol(@RequestBody CrearRolDTO crearRolDTO) {
+        Rol nuevoRol = new Rol();
+        nuevoRol.setNombre(crearRolDTO.getNombre());
+        rolRepo.save(nuevoRol);
+        return new ResponseEntity<>("Rol creado", HttpStatus.OK);
+    }
+    
 }
